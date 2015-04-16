@@ -19,7 +19,6 @@
 
 /data/*
 /config/database.yml
-/config/secrets.yml
 
 /vendor/*
 /scripts/*
