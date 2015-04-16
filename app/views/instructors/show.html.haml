@@ -1,0 +1,24 @@
+.row
+  %h3= "Name: #{@instructor.first_name} #{@instructor.last_name}"
+
+.row
+  - @instructor_courses.each do |course|
+    - @course_full_name = course.subject + ' ' + course.course_number + ': ' + course.title
+    %h3= link_to "#{@course_full_name}", course
+    %br/
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th Year
+          %th Term
+          %th Subject
+          %th Course Number
+          %th Average Grade
+      %tbody
+        - @instructor.instructor_ratings.where(:course_id => course.id).each do |rating|
+          %tr
+            %td= rating.year
+            %td= rating.term
+            %td= course.subject
+            %td= course.course_number
+            %td= '%.2f' %rating.avg_grade

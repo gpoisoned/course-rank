@@ -1,0 +1,20 @@
+.row
+  %h3 Listing All Courses:
+  = will_paginate @courses, :class => 'text-center'
+.row
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th Subject
+        %th Course Number
+        %th Course Title
+        %th Level
+        %th Hours
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %td= course.subject
+          %td= link_to "#{course.course_number}", course
+          %td= link_to "#{course.title}", course
+          %td= course.level
+          %td= course.hours

@@ -1,0 +1,14 @@
+.row
+  %h3 Listing All Instructors:
+  = will_paginate @instructors, :class => 'text-center'
+.row
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+    %tbody
+      - @instructors.each do |instructor|
+        %tr
+          %td= link_to "#{instructor.first_name}", instructor
+          %td= link_to "#{instructor.last_name}", instructor

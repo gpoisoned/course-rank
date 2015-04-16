@@ -1,0 +1,35 @@
+.row
+  %h3= "Course: #{@course.subject} #{@course.course_number}"
+  %h3= "Title: "+ @course.title
+
+.row
+  - @course_instructors.each do |instructor|
+    %div
+      %h3
+        - @instructor_full_name = instructor.first_name + ' ' + instructor.last_name
+        = link_to "#{@instructor_full_name}", instructor
+      .row
+        %table.table.table-striped.table-hover
+          %thead
+            %tr
+              %th Year
+              %th Term
+              %th Average Grade
+              %th Workload
+              %th % A
+              %th % B
+              %th % C
+              %th % D
+              %th % F
+          %tbody
+            - instructor.instructor_ratings.where(:course_id => @course.id).order('year desc').each do |instructor_rating|
+              %tr
+                %td= instructor_rating.year
+                %td= instructor_rating.term
+                %td= '%.2f' %instructor_rating.avg_grade
+                %td= '%.2f' %instructor_rating.workload_scale
+                %td= instructor_rating.a_percent
+                %td= instructor_rating.b_percent
+                %td= instructor_rating.c_percent
+                %td= instructor_rating.d_percent
+                %td= instructor_rating.f_percent
