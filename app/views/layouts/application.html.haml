@@ -4,7 +4,7 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "Course-Rank"
+    %title= content_for?(:title) ? yield(:title) : "Course-Smiles"
     = csrf_meta_tags
     = stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
@@ -26,7 +26,7 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand(href="/") [Course-Rank]
+        %a.navbar-brand(href="/") [Course-Smiles]
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li#courses
