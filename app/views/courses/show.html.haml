@@ -3,33 +3,113 @@
   %h3= "Title: "+ @course.title
 
 .row
+  .col-lg-4
+    #avg-course-grade
+  .col-lg-4
+    #avg-course-rating
+  .col-lg-4
+    #avg-instructors-rating
+
+.row
+  - unless @course_rating.nil?
+    .col-lg-6.col-sm-12.text-center
+      #grades-graph{:style=>"height:300px;"}
+    .col-lg-6.col-sm-12.text-center
+      .col-lg-12
+        %p
+          %button.btn.btn-lg.btn-block
+            Average Enrollment
+            %span.badge
+              = @course_rating.avg_enrollment
+      .col-lg-12
+        %p
+          %button.btn.btn-lg.btn-block
+            Total Enrollment
+            %span.badge
+              = @course_rating.total_enrollment
+      .col-lg-12
+        %p
+          %button.btn.btn-lg.btn-block
+            Average Workload
+            -if @course_rating.avg_workload == 1.0
+              %span.badge 0-3 hrs/wk
+              %p They call it a piece of cake
+            -elsif @course_rating.avg_workload == 2.0
+              %span.badge 4-6 hrs/wk
+            -elsif @course_rating.avg_workload == 3.0
+              %span.badge 7-9 hrs/wk
+            -elsif @course_rating.avg_workload == 4.0
+              %span.badge 10-12 hrs/wk
+            -elsif @course_rating.avg_workload == 5.0
+              %span.badge 13-15 hrs/wk
+            -else
+              %span.badge 16+ hrs/wk
+      .col-lg-12
+        %p
+          %button.btn.btn-lg.btn-block
+            Percentage of D,F,W
+            %span.badge
+              = @course_rating.dfw_percent.to_s + "%"
+      .col-lg-12
+        %p
+          %button.btn.btn-lg.btn-block
+            Course Smiles
+            - if @course_rating.avg_grade >= 3.5
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %p Take this course!!!
+            - elsif @course_rating.avg_grade >= 3.0 and @course_rating.avg_grade < 3.5
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %p This course shouldn't be that bad!!!
+            - elsif @course_rating.avg_grade >= 2.5 and @course_rating.avg_grade < 3.0
+              %i.fa.fa-smile-o
+              %i.fa.fa-smile-o
+              %p They say, if you work hard, you can do anything...
+            - else
+              %i.fa.fa-smile-o
+              %p I don't know know if I would take this course. Just saying though!
+.row
+  %h3= "Listing all Instructors for this course:"
   - @course_instructors.each do |instructor|
-    %div
-      %h3
-        - @instructor_full_name = instructor.first_name + ' ' + instructor.last_name
-        = link_to "#{@instructor_full_name}", instructor
-      .row
-        %table.table.table-striped.table-hover
-          %thead
-            %tr
-              %th Year
-              %th Term
-              %th Average Grade
-              %th Workload
-              %th % A
-              %th % B
-              %th % C
-              %th % D
-              %th % F
-          %tbody
-            - instructor.instructor_ratings.where(:course_id => @course.id).order('year desc').each do |instructor_rating|
-              %tr
-                %td= instructor_rating.year
-                %td= instructor_rating.term
-                %td= '%.2f' %instructor_rating.avg_grade
-                %td= '%.2f' %instructor_rating.workload_scale
-                %td= instructor_rating.a_percent
-                %td= instructor_rating.b_percent
-                %td= instructor_rating.c_percent
-                %td= instructor_rating.d_percent
-                %td= instructor_rating.f_percent
+    %p
+      - @instructor_full_name = instructor.first_name + ' ' + instructor.last_name
+      = link_to "#{@instructor_full_name}", instructor
+
+:javascript
+  Morris.Bar({
+    element: 'grades-graph',
+    data: [
+      { y: '% A', value: "#{@course_rating.a_percent}" },
+      { y: '% B', value: "#{@course_rating.b_percent}" },
+      { y: '% C', value: "#{@course_rating.c_percent}" },
+      { y: '% C- or below', value: "#{@course_rating.c_minus_or_below_percent}" },
+    ],
+    xkey: 'y',
+    ykeys: ['value'],
+    labels: ['value']
+  });
+  var grade = new JustGage({
+    id: "avg-course-grade",
+    value: "#{@course_rating.avg_grade}",
+    min: 0,
+    max: 4,
+    title: "Average Course Grade"
+  });
+  var course_rating = new JustGage({
+    id: "avg-course-rating",
+    value: "#{@course_rating.avg_course}",
+    min: 0,
+    max: 6,
+    title: "Average Course Rating"
+  });
+  var instructor_rating = new JustGage({
+    id: "avg-instructors-rating",
+    value: "#{@course_rating.avg_instructor}",
+    min: 0,
+    max: 6,
+    title: "Average Instructors Rating"
+  });

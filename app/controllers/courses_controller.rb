@@ -6,7 +6,8 @@ class CoursesController < ApplicationController
     end
 
     def show
-      @course_instructors = @course.instructors.order('last_name')
+      @course_instructors = @course.instructors.order('first_name')
+      @course_rating = @course.course_rating
     end
 
     private

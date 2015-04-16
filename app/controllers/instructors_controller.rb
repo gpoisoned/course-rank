@@ -2,7 +2,7 @@ class InstructorsController < ApplicationController
     before_action :set_instructor, only: [:show]
 
     def index
-      @instructors = Instructor.paginate(:page => params[:page], :per_page => 15).order('last_name asc')
+      @instructors = Instructor.paginate(:page => params[:page], :per_page => 15).order('first_name')
     end
 
     def show
