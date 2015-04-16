@@ -83,14 +83,14 @@
   Morris.Bar({
     element: 'grades-graph',
     data: [
-      { y: '% A', value: "#{@course_rating.a_percent}" },
-      { y: '% B', value: "#{@course_rating.b_percent}" },
-      { y: '% C', value: "#{@course_rating.c_percent}" },
-      { y: '% C- or below', value: "#{@course_rating.c_minus_or_below_percent}" },
+      { y: '% A', percentage: "#{@course_rating.a_percent}" },
+      { y: '% B', percentage: "#{@course_rating.b_percent}" },
+      { y: '% C', percentage: "#{@course_rating.c_percent}" },
+      { y: '% C- or below', percentage: "#{@course_rating.c_minus_or_below_percent}" },
     ],
     xkey: 'y',
-    ykeys: ['value'],
-    labels: ['value']
+    ykeys: ['percentage'],
+    labels: ['percentage']
   });
   var grade = new JustGage({
     id: "avg-course-grade",
