@@ -7,8 +7,10 @@
       %tr
         %th First Name
         %th Last Name
+        %th Title
     %tbody
       - @instructors.each do |instructor|
         %tr
           %td= link_to "#{instructor.first_name}", instructor
           %td= link_to "#{instructor.last_name}", instructor
+          %td= instructor.title unless instructor.title.nil?

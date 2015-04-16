@@ -1,5 +1,7 @@
 .row
   %h3= "Name: #{@instructor.first_name} #{@instructor.last_name}"
+  - unless @instructor.title.nil?
+    %h3= @instructor.title
 
 .row
   - @instructor_courses.each do |course|
