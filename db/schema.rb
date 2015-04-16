@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415231150) do
+ActiveRecord::Schema.define(version: 20150416012152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "course_ratings", force: :cascade do |t|
+    t.integer  "course_id"
+    t.decimal  "avg_grade",                precision: 5, scale: 2
+    t.decimal  "avg_course",               precision: 5, scale: 2
+    t.decimal  "avg_instructor",           precision: 5, scale: 2
+    t.decimal  "avg_workload",             precision: 5, scale: 2
+    t.integer  "total_enrollment"
+    t.integer  "avg_enrollment"
+    t.integer  "a_percent"
+    t.integer  "b_percent"
+    t.integer  "c_percent"
+    t.integer  "c_minus_or_below_percent"
+    t.integer  "df_percent"
+    t.integer  "dfw_percent"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "subject"
@@ -43,10 +61,12 @@ ActiveRecord::Schema.define(version: 20150415231150) do
     t.decimal  "f_percent"
     t.decimal  "workload_scale"
     t.integer  "year"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "instructor_id"
     t.string   "term"
+    t.decimal  "avg_course_rating",     precision: 5, scale: 2
+    t.decimal  "avg_instructor_rating", precision: 5, scale: 2
   end
 
   add_index "instructor_ratings", ["instructor_id"], name: "index_instructor_ratings_on_instructor_id", using: :btree
