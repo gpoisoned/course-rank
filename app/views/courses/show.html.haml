@@ -72,6 +72,8 @@
             Percentage of D,F and Withdraw
             %span.badge
               = @course_rating.dfw_percent.to_s + "%"
+  - else
+    %p= "Oops! Couldn't find any data for this course."
 .row
   %h3= "Listing all Instructors for this course:"
   - @course_instructors.each do |instructor|
@@ -79,37 +81,39 @@
       - @instructor_full_name = instructor.first_name + ' ' + instructor.last_name
       = link_to "#{@instructor_full_name}", instructor
 
-:javascript
-  Morris.Bar({
-    element: 'grades-graph',
-    data: [
-      { y: '% A', percentage: "#{@course_rating.a_percent}" },
-      { y: '% B', percentage: "#{@course_rating.b_percent}" },
-      { y: '% C', percentage: "#{@course_rating.c_percent}" },
-      { y: '% C- or below', percentage: "#{@course_rating.c_minus_or_below_percent}" },
-    ],
-    xkey: 'y',
-    ykeys: ['percentage'],
-    labels: ['percentage']
-  });
-  var grade = new JustGage({
-    id: "avg-course-grade",
-    value: "#{@course_rating.avg_grade}",
-    min: 0,
-    max: 4,
-    title: "Average Course Grade"
-  });
-  var course_rating = new JustGage({
-    id: "avg-course-rating",
-    value: "#{@course_rating.avg_course}",
-    min: 0,
-    max: 6,
-    title: "Average Course Rating"
-  });
-  var instructor_rating = new JustGage({
-    id: "avg-instructors-rating",
-    value: "#{@course_rating.avg_instructor}",
-    min: 0,
-    max: 6,
-    title: "Average Instructors Rating"
-  });
+// Don't display the charts and stuff if there's no rating found
+- unless @course_rating.nil?
+  :javascript
+    Morris.Bar({
+      element: 'grades-graph',
+      data: [
+        { y: '% A', percentage: "#{@course_rating.a_percent}" },
+        { y: '% B', percentage: "#{@course_rating.b_percent}" },
+        { y: '% C', percentage: "#{@course_rating.c_percent}" },
+        { y: '% C- or below', percentage: "#{@course_rating.c_minus_or_below_percent}" },
+      ],
+      xkey: 'y',
+      ykeys: ['percentage'],
+      labels: ['percentage']
+    });
+    var grade = new JustGage({
+      id: "avg-course-grade",
+      value: "#{@course_rating.avg_grade}",
+      min: 0,
+      max: 4,
+      title: "Average Course Grade"
+    });
+    var course_rating = new JustGage({
+      id: "avg-course-rating",
+      value: "#{@course_rating.avg_course}",
+      min: 0,
+      max: 6,
+      title: "Average Course Rating"
+    });
+    var instructor_rating = new JustGage({
+      id: "avg-instructors-rating",
+      value: "#{@course_rating.avg_instructor}",
+      min: 0,
+      max: 6,
+      title: "Average Instructors Rating"
+    });
