@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: course_select_development
+  pool: 5
+  host: localhost
+  username: course_select
+
+test: &TEST
+  adapter: postgresql
+  encoding: utf8
+  database: course_select_test
+  pool: 5
+  host: localhost
+  username: course_select
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: course_rank
+  pool: 5
+  host: localhost
+  username: course_select
+
+cucumber:
+  <<: *TEST

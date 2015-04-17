@@ -18,7 +18,6 @@
 /tmp
 
 /data/*
-/config/database.yml
 
 /vendor/*
 /scripts/*
