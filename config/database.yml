@@ -1,18 +1,20 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: course_select_development
+  database: course_rank_development
   pool: 5
   host: localhost
-  username: course_select
+  username: course_rank
+  password: <%= ENV['RAILS_DB_PWD'] %>
 
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: course_select_test
+  database: course_rank_test
   pool: 5
   host: localhost
-  username: course_select
+  username: course_rank
+  password: <%= ENV['RAILS_DB_PWD'] %>
 
 production:
   adapter: postgresql
@@ -20,7 +22,8 @@ production:
   database: course_rank
   pool: 5
   host: localhost
-  username: course_select
+  username: course_rank
+  password: <%= ENV['RAILS_DB_PWD'] %>
 
 cucumber:
   <<: *TEST
