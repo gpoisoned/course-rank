@@ -18,8 +18,8 @@
       #grades-graph{:style=>"height:300px;"}
     .col-lg-6.col-md-12.text-center
       .col-lg-12
-        %p
-          %button.btn.btn-lg.btn-block
+        %ul.list-group
+          %li.list-group-item.btn-lg
             Course Smiles
             - if @course_rating.avg_grade >= 3.5
               %i.fa.fa-smile-o
@@ -40,20 +40,20 @@
               %i.fa.fa-smile-o
               %p I don't know know if I would take this course. Just saying though!
       .col-lg-12
-        %p
-          %button.btn.btn-lg.btn-block
+        %ul.list-group
+          %li.list-group-item.btn-lg
             Average Enrollment
             %span.badge
               = @course_rating.avg_enrollment
       .col-lg-12
-        %p
-          %button.btn.btn-lg.btn-block
+        %ul.list-group
+          %li.list-group-item.btn-lg
             Total Enrollment
             %span.badge
               = @course_rating.total_enrollment
       .col-lg-12
-        %p
-          %button.btn.btn-lg.btn-block
+        %ul.list-group
+          %li.list-group-item.btn-lg
             Average Workload
             -if @course_rating.avg_workload == 1.0
               %span.badge 0-3 hrs/wk
@@ -69,8 +69,8 @@
             -else
               %span.badge 16+ hrs/wk
       .col-lg-12
-        %p
-          %button.btn.btn-lg.btn-block
+        %ul.list-group
+          %li.list-group-item.btn-lg
             Percentage of D,F and Withdraw
             %span.badge
               = @course_rating.dfw_percent.to_s + "%"
