@@ -51,3 +51,5 @@ gem "haml-rails", "~> 0.9"
 gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem "font-awesome-rails"
+
+gem "pg_search"
