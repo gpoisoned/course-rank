@@ -3,7 +3,7 @@
   - unless @instructor.title.nil?
     %h3= @instructor.title
 
-.row
+.table-responsive
   - @instructor_courses.each do |course|
     - @course_full_name = course.subject + ' ' + course.course_number + ': ' + course.title
     %h3= link_to "#{@course_full_name}", course
