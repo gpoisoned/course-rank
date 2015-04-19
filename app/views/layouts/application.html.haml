@@ -26,7 +26,11 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand(href="/") [Course-Smiles]
+        %a.navbar-brand(href="/")
+          %span [
+          Course-Smiles
+          %i.fa.fa-smile-o
+          %span ]
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li#courses
@@ -35,6 +39,9 @@
             %li#instructors
               %a{:href=> '/instructors'}
                 Instructors
+            %li#lol
+              %a{:href=> '/wtf'}
+                WTF
 
     .container
       = bootstrap_flash
