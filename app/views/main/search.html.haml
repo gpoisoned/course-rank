@@ -1,5 +1,25 @@
 .row
   %h3 Your Search Results:
-.row
-  %span
-    Nothing to show :( Search is under construction.
+  = will_paginate @search_results, :class => 'text-center'
+- unless @search_results.empty?
+  .row
+    %table.table.table-striped
+      %tbody
+        - @search_results.each do |result|
+          %tbody
+            %tr
+              - if result.searchable.instance_of? Course
+                %td= result.searchable.subject
+                %td= link_to "#{result.searchable.course_number}", result.searchable
+                %td= result.searchable.title
+              - elsif result.searchable.instance_of? Instructor
+                %td= link_to "#{result.searchable.first_name}", result.searchable
+                %td= link_to "#{result.searchable.last_name}", result.searchable
+                %td= result.searchable.title
+
+- else
+  .row
+    %span
+      %h3
+        Nothing to show
+        %i.fa.fa-frown-o
