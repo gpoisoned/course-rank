@@ -3,36 +3,37 @@
   - unless @instructor.title.nil?
     %h3= @instructor.title
 
-.table-responsive
-  - @instructor_courses.each do |course|
-    - @course_full_name = course.subject + ' ' + course.course_number + ': ' + course.title
-    %h3= link_to "#{@course_full_name}", course
-    %br/
-    %table.table.table-striped.table-hover
-      %thead
-        %tr
-          %th Year
-          %th Term
-          %th Subject
-          %th Course Number
-          %th Average Grade
-          %th Average Workload
-          %th % A
-          %th % B
-          %th % C
-          %th % D
-          %th % F
-      %tbody
-        - @instructor.instructor_ratings.where(:course_id => course.id).order('year desc').each do |rating|
+- @instructor_courses.each do |course|
+  .row
+    .table-responsive
+      - @course_full_name = course.subject + ' ' + course.course_number + ': ' + course.title
+      %h3= link_to "#{@course_full_name}", course
+      %br/
+      %table.table.table-striped.table-hover
+        %thead
           %tr
-            %td= rating.year
-            %td= rating.term
-            %td= course.subject
-            %td= course.course_number
-            %td= '%.2f' %rating.workload_scale
-            %td= '%.2f' %rating.avg_grade
-            %td= '%.2f' %rating.a_percent
-            %td= '%.2f' %rating.b_percent
-            %td= '%.2f' %rating.c_percent
-            %td= '%.2f' %rating.d_percent
-            %td= '%.2f' %rating.f_percent
+            %th Year
+            %th Term
+            %th Subject
+            %th Course Number
+            %th Average Grade
+            %th Average Workload
+            %th % A
+            %th % B
+            %th % C
+            %th % D
+            %th % F
+        %tbody
+          - @instructor.instructor_ratings.where(:course_id => course.id).order('year desc').each do |rating|
+            %tr
+              %td= rating.year
+              %td= rating.term
+              %td= course.subject
+              %td= course.course_number
+              %td= '%.2f' %rating.workload_scale
+              %td= '%.2f' %rating.avg_grade
+              %td= '%.2f' %rating.a_percent
+              %td= '%.2f' %rating.b_percent
+              %td= '%.2f' %rating.c_percent
+              %td= '%.2f' %rating.d_percent
+              %td= '%.2f' %rating.f_percent

@@ -1,4 +1,4 @@
 class StaticPagesController < ApplicationController
-  def lol
+  def faq
   end
 end
