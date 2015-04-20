@@ -8,14 +8,15 @@
         - @search_results.each do |result|
           %tbody
             %tr
-              - if result.searchable.instance_of? Course
-                %td= result.searchable.subject
-                %td= link_to "#{result.searchable.course_number}", result.searchable
-                %td= result.searchable.title
-              - elsif result.searchable.instance_of? Instructor
-                %td= link_to "#{result.searchable.first_name}", result.searchable
-                %td= link_to "#{result.searchable.last_name}", result.searchable
-                %td= result.searchable.title
+              - searchable = result.searchable
+              - if searchable.instance_of? Course
+                %td= searchable.subject
+                %td= link_to "#{searchable.course_number}", searchable
+                %td= link_to "#{searchable.title}", searchable
+              - elsif searchable.instance_of? Instructor
+                %td= link_to "#{searchable.first_name}", searchable
+                %td= link_to "#{searchable.last_name}", searchable
+                %td= searchable.title
 
 - else
   .row
