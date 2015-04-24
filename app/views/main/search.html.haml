@@ -12,10 +12,10 @@
               - if searchable.instance_of? Course
                 %td= searchable.subject
                 %td= link_to "#{searchable.course_number}", searchable
-                %td= link_to "#{searchable.title}", searchable
+                %td= link_to "#{searchable.title}", searchable, class: 'underline'
               - elsif searchable.instance_of? Instructor
-                %td= link_to "#{searchable.first_name}", searchable
-                %td= link_to "#{searchable.last_name}", searchable
+                %td= link_to "#{searchable.first_name}", searchable, class: 'underline'
+                %td= link_to "#{searchable.last_name}", searchable, class: 'underline'
                 %td= searchable.title
 
 - else

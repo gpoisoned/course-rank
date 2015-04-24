@@ -81,7 +81,7 @@
   - @course_instructors.each do |instructor|
     %p
       - @instructor_full_name = instructor.first_name + ' ' + instructor.last_name
-      = link_to "#{@instructor_full_name}", instructor
+      = link_to "#{@instructor_full_name}", instructor, class: 'underline'
 
 // Don't display the charts and stuff if there's no rating found
 - unless @course_rating.nil?

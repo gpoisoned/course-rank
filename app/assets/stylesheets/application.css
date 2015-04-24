@@ -14,3 +14,7 @@
  *= require font-awesome
  *= require_self
  */
+
+ .underline{
+   text-decoration: underline;
+ }

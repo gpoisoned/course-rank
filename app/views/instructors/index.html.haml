@@ -11,6 +11,6 @@
     %tbody
       - @instructors.each do |instructor|
         %tr
-          %td= link_to "#{instructor.first_name}", instructor
-          %td= link_to "#{instructor.last_name}", instructor
+          %td= link_to "#{instructor.first_name}", instructor, class: 'underline'
+          %td= link_to "#{instructor.last_name}", instructor, class: 'underline'
           %td= instructor.title unless instructor.title.nil?
