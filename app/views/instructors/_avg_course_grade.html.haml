@@ -1,0 +1,10 @@
+%div{:id => "#{course["course_id"]}"}
+
+:javascript
+  var grade = new JustGage({
+     id: "#{course["course_id"]}",
+     value: "#{course["avg_grade"]}",
+     min: 0,
+     max: 4,
+     title: "Instructor Course Average Grade"
+   });

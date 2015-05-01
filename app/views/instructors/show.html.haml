@@ -3,11 +3,21 @@
   - unless @instructor.title.nil?
     %h3= @instructor.title
 
-- @instructor_courses.each do |course|
+- @courses_averages.each do |course|
+  .row
+    - course_full_name = course["subject"] + ' ' + course["course_number"] + ': ' + course["title"]
+    %h3= link_to "#{course_full_name}", course_path(course["course_id"]), class: 'underline'
+  .row
+    .col-lg-7.col-md-12
+      = column_chart course.select {|k,v| ['% A','% B','% C','% D','% F'].include?(k)}
+    .col-lg-5.col-md-12.text-center
+      .col-lg
+        = render "avg_course_grade", :course => course
+      .col-lg
+        = render "avg_course_workload", :course => course
+
   .row
     .table-responsive
-      - @course_full_name = course.subject + ' ' + course.course_number + ': ' + course.title
-      %h3= link_to "#{@course_full_name}", course, class: 'underline'
       %br/
       %table.table.table-striped.table-hover
         %thead
@@ -16,20 +26,20 @@
             %th Term
             %th Subject
             %th Course Number
-            %th Average Grade
             %th Average Workload
+            %th Average Grade
             %th % A
             %th % B
             %th % C
             %th % D
             %th % F
         %tbody
-          - @instructor.instructor_ratings.where(:course_id => course.id).order('year desc').each do |rating|
+          - @instructor.instructor_ratings.where(:course_id => course["course_id"].to_i).order('year desc').each do |rating|
             %tr
               %td= rating.year
               %td= rating.term
-              %td= course.subject
-              %td= course.course_number
+              %td= course["subject"]
+              %td= course["course_number"]
               %td= '%.2f' %rating.workload_scale
               %td= '%.2f' %rating.avg_grade
               %td= '%.2f' %rating.a_percent

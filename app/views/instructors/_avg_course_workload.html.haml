@@ -1,0 +1,35 @@
+%ul.list-group
+  %li.list-group-item.btn-lg
+    Course Smiles
+    - if course["avg_grade"].to_f >= 3.5
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+    - elsif course["avg_grade"].to_f >= 3.0 and course["avg_grade"].to_f < 3.5
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+    - elsif course["avg_grade"].to_f >= 2.5 and course["avg_grade"].to_f < 3.0
+      %i.fa.fa-smile-o
+      %i.fa.fa-smile-o
+    - else
+      %i.fa.fa-smile-o
+      %p I don't know know if I would take this course. Just saying though!
+
+%ul.list-group
+  %li.list-group-item.btn-lg
+    Average Workload
+    -if course["avg_workload_scale"] == 1.0
+      %span.badge 0-3 hrs/wk
+      %p They call it a piece of cake
+    -elsif course["avg_workload_scale"] == 2.0
+      %span.badge 4-6 hrs/wk
+    -elsif course["avg_workload_scale"] == 3.0
+      %span.badge 7-9 hrs/wk
+    -elsif course["avg_workload_scale"] == 4.0
+      %span.badge 10-12 hrs/wk
+    -elsif course["avg_workload_scale"] == 5.0
+      %span.badge 13-15 hrs/wk
+    -else
+      %span.badge 16+ hrs/wk

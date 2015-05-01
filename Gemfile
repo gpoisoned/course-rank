@@ -53,3 +53,4 @@ gem "bootstrap-will_paginate"
 gem "font-awesome-rails"
 
 gem "pg_search"
+gem "chartkick"
