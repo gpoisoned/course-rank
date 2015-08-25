@@ -1,3 +1,0 @@
-== README
-
-Quick project to show CU FCQ in a nice format.
