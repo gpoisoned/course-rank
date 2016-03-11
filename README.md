@@ -14,4 +14,4 @@ Technologies used:
   - Postgres
   - Passenger + nginx server deployed on digitalocean VPS
 
-![Image Alt](https://github.com/gpoisoned/gpoisoned.github.io/blob/master/assets/images/course_smiles.png)
+![Image Alt](https://github.com/gpoisoned/gpoisoned.github.io/blob/master/assets/images/c.png)
